@@ -546,7 +546,12 @@ export const init = () => {
         hideContextMenu();
         if (event.target.classList.contains('learningmap-place') && selectedElement === null) {
             if (firstPlace === null) {
+                let pathfinder = document.getElementsByClassName('learningmap-place');
+                for (let i = 0; i < pathfinder.length; i++) {
+                    pathfinder[i].classList.add('learningmap-pathfinder');
+                }
                 firstPlace = event.target.id;
+                document.getElementById(firstPlace).classList.remove('learningmap-pathfinder');
                 document.getElementById(firstPlace).classList.add('learningmap-selected');
             } else {
                 secondPlace = event.target.id;
@@ -584,6 +589,9 @@ export const init = () => {
         });
         Array.from(document.getElementsByClassName('learningmap-selected-activity-selector')).forEach(function(e) {
             e.classList.remove('learningmap-selected-activity-selector');
+        });
+        Array.from(document.getElementsByClassName('learningmap-pathfinder')).forEach(function(e) {
+            e.classList.remove('learningmap-pathfinder');
         });
     }
 
